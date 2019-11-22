@@ -9,7 +9,7 @@ EXData
 library(tidyverse)
 MyData <- read_csv("/Users/BIJAYA/Downloads/DM.csv")
 MyData %>% group_by(SEX) %>% count() # grouping and counting the data
-Test <-MyData %>% filter(!is.na(SEX))
+Test <-MyData %>% filter(!is.na(SEX)) # filter data and missing values
 MF <- Test %>% group_by(SEX) %>% count()
 write_csv(MF,"abc.csv") # saving the file
 df <- MyData %>% filter(!is.na(AGE), (!is.na(SEX))) 
@@ -17,11 +17,11 @@ mean(df$AGE)
 MyData %>% group_by(SEX) %>% summarise(x=mean(AGE))
 df %>% 
   group_by(SEX) %>% 
-  summarise(x=mean(AGE), 
+  summarise(x=mean(AGE), # mean of age by grouping data
             y=median(AGE),
-            Examined= sum(EXAMED=="Y"), 
-            NotExamined=sum(EXAMED=="N"))
+            Examined= sum(EXAMED=="Y"), # adding one new col Examined which contains totals of Examed "Y"
+            NotExamined=sum(EXAMED=="N")) # adding one new col NotExamined which contains totals of Examed "N"
 df %>%
   group_by(SEX, EXAMED) %>%
   summarise(x=mean(AGE),
-            y=sd(AGE))
+            y=sd(AGE)) # standard deviation 
