@@ -1,8 +1,13 @@
 #get and print current working directory
 print(getwd())
 # read csv file
-DMData <- read.csv("/Users/BIJAYA/Downloads/DM.csv", header = TRUE, sep = ",")
+#DMData <- read.csv("/Users/BIJAYA/Downloads/DM.csv", header = TRUE, sep = ",")
+DMData <- read_csv("/Users/BIJAYA/Downloads/DM.csv")
 DMData
+a <-DMData %>% filter(!is.na (trimws(SEX))) # first way to filter
+a <- DMData %>% filter(nchar(trimws(SEX)) != 0) # second way to trim
+a <- DMData %>% filter(is.na(SEX))
+a
 #read EX.csv file
 EXData <- read.csv("/Users/BIJAYA/Downloads/EX.csv", header = TRUE, sep = ",")
 EXData
